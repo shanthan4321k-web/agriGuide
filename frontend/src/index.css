@@ -1,0 +1,209 @@
+:root {
+  /* ==========================================================================
+     AGRIGUIDE DESIGN TOKENS (LOCKED SOURCE OF TRUTH)
+     ========================================================================== */
+
+  /* Surface & Canvas Colors */
+  --ag-color-bg-base: #F7F8F2;
+  --ag-color-surface-base: #FFFFFF;
+  --ag-color-border-base: #DDE5DE;
+
+  /* Brand Primary */
+  --ag-color-primary-base: #2F7D32;
+  --ag-color-primary-light: #E8F5E9;
+  --ag-color-primary-dark: #245E28;
+
+  /* Harvest & Market Accent */
+  --ag-color-harvest-base: #F2B84B;
+  --ag-color-harvest-light: #FFF4D6;
+
+  /* Weather & Sky */
+  --ag-color-weather-base: #3B82C4;
+  --ag-color-weather-light: #EAF4FC;
+
+  /* Semantic Feedback */
+  --ag-color-success-base: #2E8B57;
+  --ag-color-warning-base: #D99000;
+  --ag-color-danger-base: #D94A45;
+  --ag-color-info-base: #2878C8;
+
+  /* Typography Colors (High-Contrast for Sunlight Legibility) */
+  --ag-color-text-primary: #19352A;   /* 16.2:1 contrast on white */
+  --ag-color-text-secondary: #587064; /* Accessible secondary text */
+  --ag-color-text-inverse: #FFFFFF;
+
+  /* Semantic Aliases */
+  --ag-bg-canvas: var(--ag-color-bg-base);
+  --ag-bg-surface: var(--ag-color-surface-base);
+  --ag-bg-surface-elevated: #FFFFFF;
+
+  --ag-text-primary: var(--ag-color-text-primary);
+  --ag-text-secondary: var(--ag-color-text-secondary);
+  --ag-text-inverse: var(--ag-color-text-inverse);
+
+  --ag-border-default: var(--ag-color-border-base);
+  --ag-border-strong: #BDCBD0;
+
+  /* Card Geometry & Radius */
+  --ag-radius-sm: 8px;
+  --ag-radius-md: 12px;
+  --ag-radius-card: 18px; /* 16–20px standard */
+  --ag-radius-full: 9999px;
+
+  /* Subtle, Natural Shadows */
+  --ag-shadow-card: 0 2px 8px rgba(25, 53, 42, 0.04), 0 1px 3px rgba(25, 53, 42, 0.02);
+  --ag-shadow-elevated: 0 6px 16px rgba(25, 53, 42, 0.08), 0 2px 6px rgba(25, 53, 42, 0.03);
+  --ag-shadow-modal: 0 12px 32px rgba(25, 53, 42, 0.16);
+
+  /* Touch Target Standards (Farmer-first accessibility) */
+  --ag-touch-min: 48px;
+  --ag-touch-prominent: 56px;
+
+  /* Typography: Noto Sans with Telugu and Devanagari fallbacks */
+  --font-family-base: 'Noto Sans', 'Noto Sans Telugu', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-indic: 'Noto Sans Telugu', 'Noto Sans Devanagari', 'Noto Sans', sans-serif;
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-family-base);
+  background-color: var(--ag-bg-canvas);
+  color: var(--ag-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5; /* +15% line-height cushion for Indic script matras */
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--ag-bg-canvas);
+  color: var(--ag-text-primary);
+  overflow-x: hidden;
+}
+
+/* Base Root Layout */
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--ag-bg-canvas);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Mobile-Specific Constraints (< 768px) */
+@media (max-width: 767px) {
+  #root {
+    max-width: 480px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+}
+
+/* Desktop & Tablet Web Experience (>= 768px) */
+@media (min-width: 768px) {
+  body {
+    background-color: #F0F2EB;
+    overflow-x: hidden;
+  }
+
+  #root {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: var(--ag-bg-canvas);
+    overflow-x: hidden;
+  }
+}
+
+/* Responsive Container for AgriGuide Web */
+.ag-desktop-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 20px 48px 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.ag-grid-hero {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: stretch;
+}
+
+.ag-grid-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: stretch;
+}
+
+.ag-grid-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: stretch;
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .ag-grid-hero,
+  .ag-grid-secondary,
+  .ag-grid-footer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Common Interactive Target Utility */
+button, a {
+  font-family: inherit;
+  color: inherit;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--ag-color-primary-base);
+  outline-offset: 2px;
+}
+
+/* Indic Script Optimizations */
+[lang="te"], [lang="hi"] {
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ag-color-border-base);
+  border-radius: 4px;
+}
